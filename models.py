@@ -23,10 +23,9 @@ class Order(db.Model):
     
 class ProductsOrder(db.Model): 
     product_name = db.Column(db.ForeignKey("product.name"), primary_key=True) 
-    order_id = db.Column(db.ForeignKey("order.id"), primary_key=True) 
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False) 
  
     # Relationships and back  references for SQL Alchemy 
     product = db.relationship('Product') 
-    order = db.relationship('Order', back_populates='products')
-    
+    order = db.relationship('Order', back_populates='products')    
