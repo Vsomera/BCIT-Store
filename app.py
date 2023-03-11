@@ -134,8 +134,8 @@ def api_create_order():
             return f"Item: {item['name']} is not available or in stock", 400
 
     # checks if quantity of products is a whole number and greater than 0
-    if type(item["quantity"]) != int or item["quantity"] < 0:
-        return "Quantity must be a whole number and greater than 0"
+        if type(item["quantity"]) != int or int(item["quantity"]) < 0:
+            return "Quantity must be a whole number and greater than 0", 400
      
     # creates a new order and adds order to order table
     new_order = Order(
